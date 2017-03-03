@@ -116,9 +116,9 @@ class ImageMenuItemHandler implements EventHandler<ActionEvent>
                 BufferedImage bi = ImageIO.read(file);
                 Globals.imageLocalView.setImage(SwingFXUtils.toFXImage(bi, null));
                 String fileName = file.getName();
-                String [] fileExtension = fileName.split(".");
+                String [] fileExtension = fileName.split("\\.");
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                ImageIO.write(bi, "png", baos);
+                ImageIO.write(bi, fileExtension[(fileExtension.length-1)], baos);
                 byte[] imageArray = baos.toByteArray();
                 byte[] tempBuffer = ("photo " + imageArray.length + " ").getBytes();
                 byte[] sendBuffer = new byte[tempBuffer.length+imageArray.length];

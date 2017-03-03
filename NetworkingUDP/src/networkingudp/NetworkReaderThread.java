@@ -112,10 +112,10 @@ class NetworkInputProcessor implements Runnable
                         byte [] image = new byte[size];
                         int offset = (protocol + " " + size + " ").getBytes().length;
                         System.arraycopy(recvPack.getData(), offset, image, 0, image.length);
-                        new Thread(new ImageCommandReceived(0, image)).start();
+                        Platform.runLater(new ImageCommandReceived(0, image));
                         break;
                     case "chat":
-                        new Thread(new ChatMessageReceived(read.nextLine())).start();
+                        Platform.runLater(new ChatMessageReceived(read.nextLine()));
                         break;
                     case "quit":
                         Platform.runLater(new QuitCommandReceived());
